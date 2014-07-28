@@ -1,14 +1,8 @@
 # Eventful/ClassMethods.rb
 # Eventful::ClassMethods
 
-require 'ObjectSpace/self.select_objects'
-
 module Eventful
   module ClassMethods
-
-    def active
-      ObjectSpace.select_objects(self){|o| o.active?}
-    end
 
     # memory resident
     def memory_run(frequency_in_seconds = 0)
