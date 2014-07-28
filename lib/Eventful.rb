@@ -1,8 +1,8 @@
 # Eventful.rb
 # Eventful
 
-# 20140617
-# 0.4.0
+# 20140728
+# 0.4.1
 
 require 'Stateful'
 require_relative File.join('Eventful', 'ClassMethods')

@@ -1,7 +1,5 @@
 # test/ActiveRecord.rb
 
-# 20140617
-
 gem 'minitest'
 gem 'minitest-spec-context'
 
@@ -106,7 +104,7 @@ describe Eventful do
 
   end
 
-  context "an_event? and another_event? are true" do
+  context "an_event? and yet_another_event? are true" do
 
     before do
       class ActiveRecordMachine

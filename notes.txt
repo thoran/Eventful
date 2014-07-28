@@ -1,0 +1,4 @@
+Things under consideration as of 20140619:
+
+* timeout if an event status method fails more than a specified or default number of times
+* allow other state machine libraries to be used than Stateful

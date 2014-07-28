@@ -1,7 +1,5 @@
 # test/Eventful.rb
 
-# 20140617
-
 gem 'minitest'
 gem 'minitest-spec-context'
 
