@@ -1,16 +1,17 @@
 # Eventful.rb
 # Eventful
 
-# 20140202
-# 0.0.1
+# 20140203
+# 0.1.0
 
 require 'Stateful'
 
 module Eventful
 
   # memory resident
-  def run_loop
+  def run_loop(frequency_in_seconds = 0)
     loop do
+      sleep frequency_in_seconds
       run
     end
   end
