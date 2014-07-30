@@ -79,7 +79,6 @@ describe Eventful do
   end
 
   context "an_event? and yet_another_event? are true" do
-
     before do
       class Machine
         def an_event?
@@ -114,6 +113,32 @@ describe Eventful do
       machine.current_state = :next_state
       Machine.run
       machine.current_state.name.must_equal :final_state
+    end
+  end
+
+  context "frequency_in_seconds and runtime_in_seconds given" do
+    before do
+      class Machine
+        def an_event?
+          true
+        end
+
+        def another_event?
+          true
+        end
+
+        def yet_another_event?
+          true
+        end
+      end
+    end
+
+    it "must run for no longer than the specified runtime_in_seconds" do
+      start_time = Time.now
+      Machine.run(2, 10) # Run every 2 seconds for not more than 10 seconds.
+      finish_time = Time.now
+      run_time = finish_time - start_time
+      run_time.must_be_close_to 10, 0.1
     end
   end
 
