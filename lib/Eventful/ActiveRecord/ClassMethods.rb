@@ -1,4 +1,4 @@
-# Eventful/ActiveRecord/.rb
+# Eventful/ActiveRecord/ClassMethods.rb
 # Eventful::ActiveRecord::ClassMethods
 
 module Eventful
@@ -6,7 +6,11 @@ module Eventful
     module ClassMethods
 
       def active
-        self.all.select{|o| o.active?}
+        if self.column_names.include?('active')
+          where(active: true)
+        else
+          self.all.select{|o| o.active?}
+        end
       end
 
     end
