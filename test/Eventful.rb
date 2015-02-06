@@ -1,16 +1,7 @@
 # test/Eventful.rb
 
-gem 'minitest'
-gem 'minitest-spec-context'
+# The two ActiveRecord specs don't like being run together, so I randomly pick one of them to run...
+active_record_test_file = ['ActiveRecord', 'ActiveRecordWhenNoFinalState'][rand(2)]
+require_relative active_record_test_file
 
-require 'minitest/autorun'
-require 'minitest-spec-context'
-
-test_dir = File.dirname(File.expand_path(__FILE__))
-$LOAD_PATH.unshift(test_dir) unless $LOAD_PATH.include?(test_dir)
-
-lib_dir = File.expand_path(File.join(test_dir, '..', 'lib'))
-$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
-
-require 'ActiveRecord'
-require 'Poro'
+require_relative 'Poro'

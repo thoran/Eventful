@@ -56,6 +56,10 @@ describe Eventful do
 
   let(:machine){ActiveRecordMachine.create}
 
+  before do
+    ActiveRecordMachine.delete_all
+  end
+
   it "must have successfully extended the receiver class with Stateful methods" do
     machine.class.methods.include?(:stateful_states).must_equal true
   end
@@ -65,6 +69,7 @@ describe Eventful do
   end
 
   context "only an_event? is true" do
+
     before do
       class ActiveRecordMachine
         def an_event?
@@ -79,11 +84,10 @@ describe Eventful do
           false
         end
       end
-      ActiveRecordMachine.delete_all
     end
 
     it "must know which instances are active (ie. not in a final state)" do
-      ActiveRecordMachine.create
+      machine.current_state
       ActiveRecordMachine.active.size.must_equal 1
     end
 
@@ -97,13 +101,14 @@ describe Eventful do
     end
 
     it "must automatically trigger state changes" do
-      machine
+      machine.current_state
       ActiveRecordMachine.run
       machine.reload.current_state.name.must_equal :next_state
     end
   end
 
   context "an_event? and yet_another_event? are true" do
+
     before do
       class ActiveRecordMachine
         def an_event?
@@ -118,11 +123,10 @@ describe Eventful do
           true
         end
       end
-      ActiveRecordMachine.delete_all
     end
 
     it "must know which instances are active (ie. not in a final state)" do
-      ActiveRecordMachine.create
+      machine.current_state
       ActiveRecordMachine.active.size.must_equal 1
     end
 
@@ -143,8 +147,9 @@ describe Eventful do
   end
 
   context "frequency_in_seconds and runtime_in_seconds given" do
+
     before do
-      class Machine
+      class ActiveRecordMachine
         def an_event?
           true
         end
