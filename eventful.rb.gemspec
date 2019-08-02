@@ -1,5 +1,5 @@
 Gem::Specification.new do |spec|
-  spec.name = 'eventful'
+  spec.name = 'eventful.rb'
 
   spec.version = '0.7.0'
   spec.date = '2019-08-02'
